@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://clawppm4mv2xp"]
-
-[ext_resource type="Texture2D" uid="uid://b5ob0nf8m7i1g" path="res://assets/sprites/Hairstyles.png" id="1_fcujk"]
-
-[node name="Hair" type="Sprite2D"]
-texture = ExtResource("1_fcujk")
-hframes = 4
-vframes = 4
-frame = 1

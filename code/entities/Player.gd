@@ -1,6 +1,5 @@
-extends CharacterBody2D
+extends "res://code/entities/Entity_Base.gd"
 
-@export var speed := 200
 var update_sprite = true
 @onready var sprite = $SpriteContainer/Character
 @onready var anim_player = $SpriteContainer/AnimationPlayer
@@ -13,6 +12,10 @@ func _ready() -> void:
 	anim_player.play("idle")
 
 func _physics_process(_delta: float) -> void:
+	move()
+
+func move():
+	print("?")
 	var direction := Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
 		Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
