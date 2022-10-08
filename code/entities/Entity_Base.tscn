@@ -1,0 +1,224 @@
+[gd_scene load_steps=12 format=3 uid="uid://b2wqjwc75co3y"]
+
+[ext_resource type="Script" path="res://code/entities/Entity_Base.gd" id="1_2hdha"]
+[ext_resource type="Texture2D" uid="uid://co5wy8j3djja1" path="res://assets/sprites/Char_001.png" id="2_ftv20"]
+[ext_resource type="Shader" path="res://code/shaders/palette_swap.gdshader" id="3_xpv0a"]
+[ext_resource type="Texture2D" uid="uid://8g40g8uxqhpy" path="res://assets/sprites/palettes/sienna.png" id="4_drbrm"]
+[ext_resource type="Texture2D" uid="uid://b5ob0nf8m7i1g" path="res://assets/sprites/Hairstyles.png" id="5_e51ei"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sdmho"]
+shader = ExtResource("3_xpv0a")
+shader_parameter/fps = 6.0
+shader_parameter/palette = ExtResource("4_drbrm")
+shader_parameter/skip_first_row = true
+shader_parameter/use_palette_alpha = null
+
+[sub_resource type="Animation" id="Animation_ric2j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hat:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hair:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_jj7fq"]
+resource_name = "cast"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [9, 0, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hat:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 2), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hair:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_mg8v6"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hat:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hair:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_th72b"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hat:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hair:offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 1), Vector2(0, 0), Vector2(0, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mydf4"]
+_data = {
+"RESET": SubResource("Animation_ric2j"),
+"cast": SubResource("Animation_jj7fq"),
+"idle": SubResource("Animation_mg8v6"),
+"walk": SubResource("Animation_th72b")
+}
+
+[node name="EntityBase" type="CharacterBody2D"]
+script = ExtResource("1_2hdha")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+
+[node name="SpriteContainer" type="Marker2D" parent="."]
+
+[node name="Character" type="Sprite2D" parent="SpriteContainer"]
+texture = ExtResource("2_ftv20")
+hframes = 3
+vframes = 4
+
+[node name="Armor" type="Sprite2D" parent="SpriteContainer"]
+hframes = 3
+vframes = 4
+frame = 1
+
+[node name="Hair" type="Sprite2D" parent="SpriteContainer"]
+material = SubResource("ShaderMaterial_sdmho")
+texture = ExtResource("5_e51ei")
+hframes = 4
+vframes = 4
+frame = 1
+
+[node name="Hat" type="Sprite2D" parent="SpriteContainer"]
+position = Vector2(0, 1)
+offset = Vector2(0, -1)
+hframes = 4
+vframes = 4
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpriteContainer"]
+libraries = {
+"": SubResource("AnimationLibrary_mydf4")
+}

@@ -1,8 +1,2 @@
-res://code/entities/Player.tscn
+res://code/entities/Entity_Base.tscn
 res://Main.tscn
-res://code/entities/recolor.gdshader
-res://code/entities/Entity_Base.gd
-res://code/entities/entity_base.tscn
-res://code/entities/enemy.tscn
-res://code/entities/player.tscn
-res://code/entities/Player.gd
