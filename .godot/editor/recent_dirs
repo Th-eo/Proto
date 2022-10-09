@@ -1,2 +1,4 @@
-res://code/shaders
-res://code/entities
+res://src/particles
+res://src/assets/sprites/Character
+res://src/entities
+res://src/assets/sprites

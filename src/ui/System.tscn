@@ -1,0 +1,139 @@
+[gd_scene load_steps=17 format=3 uid="uid://h6ta74dcp82q"]
+
+[ext_resource type="Script" path="res://src/ui/System.gd" id="1_jk6je"]
+[ext_resource type="FontFile" uid="uid://bfuex1rd3aj3u" path="res://src/assets/fonts/OpenSans-VariableFont_wdth,wght.ttf" id="2_fanxj"]
+[ext_resource type="Script" path="res://src/colors/Coral.gd" id="3_rfpb4"]
+[ext_resource type="Script" path="res://src/colors/Dodger Blue.gd" id="4_lu3at"]
+[ext_resource type="Script" path="res://src/colors/Maroon.gd" id="5_04yya"]
+[ext_resource type="Script" path="res://src/colors/Medium Purple.gd" id="6_v6bjq"]
+[ext_resource type="Script" path="res://src/colors/Olive.gd" id="7_ug4fl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kev6j"]
+
+[sub_resource type="Theme" id="Theme_5v5pp"]
+TextEdit/styles/normal = SubResource("StyleBoxTexture_kev6j")
+
+[sub_resource type="FontVariation" id="FontVariation_erl7e"]
+base_font = ExtResource("2_fanxj")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_rrxuf"]
+script = ExtResource("3_rfpb4")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_ppnw5"]
+script = ExtResource("4_lu3at")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_axrde"]
+script = ExtResource("5_04yya")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_oux3q"]
+script = ExtResource("6_v6bjq")
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_yqy3b"]
+script = ExtResource("7_ug4fl")
+
+[sub_resource type="Theme" id="Theme_l3o6y"]
+
+[node name="System" type="Control"]
+custom_minimum_size = Vector2i(452, 212)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -700.0
+offset_bottom = -436.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jk6je")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.0588235, 0.0588235, 0.0588235, 0.647059)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+custom_minimum_size = Vector2i(452, 0)
+offset_top = 26.0
+offset_right = 452.0
+offset_bottom = 29.0
+color = Color(0.356863, 0.356863, 0.356863, 0.235294)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+offset_right = 580.0
+offset_bottom = 26.0
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer2"]
+layout_mode = 3
+anchors_preset = 0
+offset_bottom = 26.0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2i(0, 26)
+offset_left = 4.0
+offset_right = 580.0
+offset_bottom = 26.0
+size_flags_horizontal = 3
+theme = SubResource("Theme_5v5pp")
+theme_override_colors/default_color = Color(0.517647, 0.517647, 0.517647, 1)
+text = "System Log"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2i(0, 138)
+offset_top = 30.0
+offset_right = 580.0
+offset_bottom = 168.0
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer3"]
+layout_mode = 3
+anchors_preset = 0
+offset_bottom = 138.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer3"]
+offset_left = 4.0
+offset_right = 580.0
+offset_bottom = 138.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/normal_font = SubResource("FontVariation_erl7e")
+bbcode_enabled = true
+custom_effects = [SubResource("RichTextEffect_rrxuf"), SubResource("RichTextEffect_ppnw5"), SubResource("RichTextEffect_axrde"), SubResource("RichTextEffect_oux3q"), SubResource("RichTextEffect_yqy3b")]
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 172.0
+offset_right = 580.0
+offset_bottom = 172.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2i(0, 6)
+offset_top = 176.0
+offset_right = 580.0
+offset_bottom = 214.0
+alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2i(0, 38)
+offset_right = 580.0
+offset_bottom = 38.0
+size_flags_horizontal = 3
+theme = SubResource("Theme_l3o6y")
+placeholder_text = "Press [ENTER] to type."
+caret_blink = true
+caret_blink_interval = 0.5
+
+[connection signal="focus_entered" from="VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_focus_entered"]
+[connection signal="focus_exited" from="VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="text_submitted" from="VBoxContainer/HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmimmn7evv50w"]
+
+[ext_resource type="Texture2D" uid="uid://bsn3k452wqvdv" path="res://src/assets/sprites/Particles/Electro.png" id="2_u4fex"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h2duo"]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_cji6b"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.290667, 0.994667, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0.988235, 0.83706, 0.00105945, 0.911125, 0)
+
+[node name="ElectroAura" type="CPUParticles2D"]
+material = SubResource("CanvasItemMaterial_h2duo")
+position = Vector2(1, 7)
+amount = 1
+lifetime = 0.5
+local_coords = true
+texture = ExtResource("2_u4fex")
+gravity = Vector2(0, 0)
+color_ramp = SubResource("Gradient_cji6b")
+anim_speed_max = 1.0
+anim_offset_min = 0.2
+anim_offset_max = 1.0
+metadata/_edit_group_ = true

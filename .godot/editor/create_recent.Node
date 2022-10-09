@@ -1,3 +1,13 @@
+CPUParticles2D
+Label
+TileMap
+PointLight2D
+CanvasModulate
+AnimatedSprite2D
+Control
+SubViewport
+SubViewportContainer
+Camera2D
 AnimationPlayer
 Sprite2D
 CollisionShape2D

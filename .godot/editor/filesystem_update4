@@ -1,2 +1,4 @@
-res://code/entities/Entity_Base.tscn
+res://src/entities/Entity_Base.tscn
 res://Main.tscn
+res://src/particles/ElectroAura.tscn
+res://src/particles/WaterAura.tscn
