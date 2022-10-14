@@ -1,0 +1,117 @@
+[gd_scene load_steps=7 format=3 uid="uid://dgi23h1tbjngv"]
+
+[ext_resource type="Script" path="res://src/entities/Weapon_Base.gd" id="1_y8geo"]
+[ext_resource type="Texture2D" uid="uid://j20oiqn8jc7y" path="res://src/assets/sprites/Character/Wea_001.png" id="2_up6ia"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4c8d"]
+size = Vector2(29, 40.5)
+
+[sub_resource type="Animation" id="Animation_uyxjj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2d/CollisionShape2d:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_4d14d"]
+resource_name = "swing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 2.53073]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2d/CollisionShape2d:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8y0xl"]
+_data = {
+"RESET": SubResource("Animation_uyxjj"),
+"swing": SubResource("Animation_4d14d")
+}
+
+[node name="Weapon" type="Node2D"]
+visible = false
+script = ExtResource("1_y8geo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(13, 0)
+texture = ExtResource("2_up6ia")
+offset = Vector2(0, -8)
+
+[node name="Area2d" type="Area2D" parent="."]
+position = Vector2(13, 0)
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Area2d"]
+visible = false
+position = Vector2(14.5, -4.75)
+shape = SubResource("RectangleShape2D_m4c8d")
+disabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8y0xl")
+}
+
+[connection signal="area_entered" from="Area2d" to="." method="_on_area_2d_area_entered"]

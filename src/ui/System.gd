@@ -11,23 +11,7 @@ signal change_haircolor
 signal change_body
 
 func _ready() -> void:
-	var body = $Body/BodyOption
-	var armor = $Armor/ArmorOption
-	var hat = $Hat/HatOption
-	var hair = $Hairstyle/HairstyleOption
-	var haircolor = $Color/ColorOption
-	for n in Customization.bodies.size():
-		body.add_item(Customization.bodies[n])
-	for n in Customization.armors.size():
-		armor.add_item(Customization.armors[n])
-	for n in Customization.hats.size():
-		hat.add_item(Customization.hats[n])
-	for n in Customization.hairstyles.size():
-		hair.add_item(Customization.hairstyles[n])
-	for n in Customization.hair_colors.size():
-		haircolor.add_item(Customization.hair_colors[n])
-	
-	pass#modulate = "ffffff96"
+	pass
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:

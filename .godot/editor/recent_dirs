@@ -1,4 +1,6 @@
-res://src/particles
-res://src/assets/sprites/Character
 res://src/entities
+res://
+res://src/particles
+res://src/ui
+res://src/assets/sprites/Character
 res://src/assets/sprites

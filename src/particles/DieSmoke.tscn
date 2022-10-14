@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgjai4cq4goqy"]
+
+[ext_resource type="Texture2D" uid="uid://cx6v45n6jp4iy" path="res://src/assets/sprites/Particles/Fire.png" id="1_pyfay"]
+
+[sub_resource type="Gradient" id="Gradient_0ng3l"]
+offsets = PackedFloat32Array(0, 0.373333, 0.714667, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="DieSmoke" type="CPUParticles2D"]
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_pyfay")
+direction = Vector2(1, 1)
+spread = 180.0
+gravity = Vector2(0, -10)
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_0ng3l")

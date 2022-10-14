@@ -1,5 +1,72 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=9 format=3 uid="uid://cqyjmdih7tghm"]
 
-[ext_resource type="PackedScene" path="res://src/entities/Entity_Base.tscn" id="1_mjwo1"]
+[ext_resource type="PackedScene" uid="uid://d35xym1pgwedw" path="res://src/entities/Entity_Base.tscn" id="1_mjwo1"]
+[ext_resource type="Script" path="res://src/entities/Enemy.gd" id="2_ncsw5"]
+[ext_resource type="Shader" uid="uid://cdkpm6nupvrft" path="res://src/shaders/Flash.tres" id="3_3ofry"]
 
-[node name="EnemyBase" instance=ExtResource("1_mjwo1")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_77ktf"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ooro5"]
+shader = ExtResource("3_3ofry")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ga3pf"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uhlyt"]
+bg_color = Color(0, 0.658824, 0.101961, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1ug18"]
+radius = 96.0
+
+[node name="EnemyBase" groups=["enemy"] instance=ExtResource("1_mjwo1")]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("2_ncsw5")
+display_name = "Goblin"
+speed = 100
+
+[node name="HurtBox" parent="." index="0" groups=["enemy_hurtbox"]]
+
+[node name="CollisionShape2d" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_77ktf")
+
+[node name="Character" parent="." index="2"]
+material = SubResource("ShaderMaterial_ooro5")
+
+[node name="HPBar" type="ColorRect" parent="." index="4"]
+visible = false
+offset_left = -8.0
+offset_top = -15.0
+offset_right = 8.0
+offset_bottom = -11.0
+mouse_filter = 2
+color = Color(0.188235, 0.172549, 0.180392, 1)
+
+[node name="Bar" type="ProgressBar" parent="HPBar" index="0"]
+layout_mode = 1
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 15.0
+offset_bottom = 3.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_ga3pf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_uhlyt")
+step = 1.0
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="Detection" type="Area2D" parent="." index="5"]
+visible = false
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="Detection" index="0"]
+modulate = Color(0, 1, 0, 0.517647)
+z_index = -1
+shape = SubResource("CircleShape2D_1ug18")
+
+[connection signal="area_entered" from="Detection" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="Detection" to="." method="_on_detection_area_exited"]

@@ -1,11 +1,68 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfyd3gu2i0uac"]
+[gd_scene load_steps=9 format=3 uid="uid://bfyd3gu2i0uac"]
 
-[ext_resource type="PackedScene" path="res://src/entities/Entity_Base.tscn" id="1_fvl6s"]
+[ext_resource type="PackedScene" uid="uid://d35xym1pgwedw" path="res://src/entities/Entity_Base.tscn" id="1_fvl6s"]
 [ext_resource type="Script" path="res://src/entities/Camera2d.gd" id="2_2lqkg"]
+[ext_resource type="Shader" uid="uid://cdkpm6nupvrft" path="res://src/shaders/Flash.tres" id="2_g26ab"]
+[ext_resource type="PackedScene" uid="uid://dgi23h1tbjngv" path="res://src/entities/Weapon_Base.tscn" id="3_mjyuh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4hfmb"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dxahi"]
+shader = ExtResource("2_g26ab")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_modifier = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_24uuy"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wh42m"]
+bg_color = Color(0, 0.658824, 0.101961, 1)
 
 [node name="Player" groups=["player"] instance=ExtResource("1_fvl6s")]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 3
+display_name = "Player"
+attack_power = 100
+
+[node name="HurtBox" parent="." index="0" groups=["player_hurtbox"]]
+
+[node name="CollisionShape2d" parent="." index="1"]
+shape = SubResource("CapsuleShape2D_4hfmb")
+
+[node name="Character" parent="." index="2"]
+material = SubResource("ShaderMaterial_dxahi")
 
 [node name="Camera2d" type="Camera2D" parent="." index="3"]
 current = true
 zoom = Vector2(3, 3)
 script = ExtResource("2_2lqkg")
+
+[node name="Weapon" parent="." index="5" instance=ExtResource("3_mjyuh")]
+
+[node name="HPBar" type="ColorRect" parent="." index="6"]
+visible = false
+offset_left = -8.0
+offset_top = -15.0
+offset_right = 8.0
+offset_bottom = -11.0
+mouse_filter = 2
+color = Color(0.188235, 0.172549, 0.180392, 1)
+
+[node name="Bar" type="ProgressBar" parent="HPBar" index="0"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 15.0
+offset_bottom = 3.0
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_24uuy")
+theme_override_styles/fill = SubResource("StyleBoxFlat_wh42m")
+step = 1.0
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="CompanionPosition" type="Marker2D" parent="." index="7"]
+position = Vector2(17, -17)

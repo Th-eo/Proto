@@ -7,8 +7,20 @@ extends Camera2D
 
 var zoom_level := 3.0
 
+var shake_amount = 0
+var shake_duration = 0
+var default_offset = offset
+
 func _ready() -> void:
 	zoom = Vector2(3, 3)
+
+func _process(delta: float) -> void:
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	offset = Vector2(rng.randf_range(-shake_amount, shake_amount), rng.randf_range(-shake_amount, shake_amount)) * delta + default_offset
+	await get_tree().create_timer(shake_duration).timeout
+	offset = default_offset
+	set_process(false)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("zoom_in"):
